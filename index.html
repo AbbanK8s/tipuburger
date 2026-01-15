@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipu Burger | Best Desi Burgers & Shawarma</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600&display=swap');
+        
+        body { font-family: 'Poppins', sans-serif; background-color: #0a0a0a; color: white; }
+        .heading-font { font-family: 'Bebas Neue', cursive; letter-spacing: 2px; }
+        .bg-desi-red { background-color: #8B0000; }
+        .text-desi-gold { color: #FFD700; }
+        .card-gradient { background: linear-gradient(145deg, #1a1a1a, #0a0a0a); border: 1px solid #333; }
+    </style>
+</head>
+<body>
+
+    <header class="bg-black/90 sticky top-0 z-50 border-b border-desi-red p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-4xl heading-font text-desi-gold">TIPU <span class="text-white">BURGER</span></h1>
+            <div class="relative">
+                <button onclick="toggleCart()" class="text-2xl hover:text-desi-gold">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-desi-red text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="h-[60vh] bg-cover bg-center flex items-center justify-center relative" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=2072&auto=format&fit=crop');">
+        <div class="text-center">
+            <h2 class="text-6xl md:text-8xl heading-font mb-4">TASTE THE <span class="text-desi-gold">FLAME</span></h2>
+            <p class="text-xl italic">Authentic Desi Flavors | Quick Delivery | Barki Road</p>
+            <a href="#menu" class="mt-6 inline-block bg-desi-red px-8 py-3 rounded-full font-bold hover:bg-red-700 transition">ORDER NOW</a>
+        </div>
+    </section>
+
+    <section id="menu" class="container mx-auto py-16 px-4">
+        <h3 class="text-4xl heading-font text-center mb-12 border-b-2 border-desi-red w-48 mx-auto">OUR MENU</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="space-y-6">
+                <h4 class="text-2xl text-desi-gold heading-font"><i class="fas fa-hamburger mr-2"></i> BURGERS</h4>
+                <div id="burger-list" class="space-y-4">
+                    </div>
+            </div>
+
+            <div class="space-y-6">
+                <h4 class="text-2xl text-desi-gold heading-font"><i class="fas fa-drumstick-bite mr-2"></i> ZINGERS & FRIES</h4>
+                <div id="zinger-list" class="space-y-4"></div>
+            </div>
+
+            <div class="space-y-6">
+                <h4 class="text-2xl text-desi-gold heading-font"><i class="fas fa-wrap mr-2"></i> SHAWARMA</h4>
+                <div id="shawarma-list" class="space-y-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-zinc-900 py-16">
+        <div class="container mx-auto px-4">
+            <h3 class="text-4xl heading-font text-center mb-12">CUSTOMER REVIEWS</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 bg-black rounded-lg border-l-4 border-desi-red">
+                    <p class="italic">"The Zinger Burger is better than the big chains. Super crispy!"</p>
+                    <p class="mt-4 font-bold text-desi-gold">- Ali Khan</p>
+                </div>
+                <div class="p-6 bg-black rounded-lg border-l-4 border-desi-red">
+                    <p class="italic">"Best Shami Burger in town. The chutney is amazing."</p>
+                    <p class="mt-4 font-bold text-desi-gold">- Sana M.</p>
+                </div>
+                <div class="p-6 bg-black rounded-lg border-l-4 border-desi-red">
+                    <p class="italic">"Loaded fries are a must try. Huge portion for the price."</p>
+                    <p class="mt-4 font-bold text-desi-gold">- Usman R.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-12 border-t border-zinc-800">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl heading-font text-desi-gold mb-4">TIPU BURGER</h2>
+            <p><i class="fas fa-phone mr-2"></i> 0309-2245810</p>
+            <p class="mt-2 text-zinc-500 text-sm">© 2026 Tipu Burger. Designed for Taste.</p>
+        </div>
+    </footer>
+
+    <div id="cart-sidebar" class="fixed right-0 top-0 h-full w-80 bg-zinc-900 shadow-2xl transform translate-x-full transition-transform duration-300 z-[60] p-6">
+        <div class="flex justify-between items-center mb-8">
+            <h3 class="text-2xl heading-font">Your Order</h3>
+            <button onclick="toggleCart()" class="text-2xl">&times;</button>
+        </div>
+        <div id="cart-items" class="space-y-4 overflow-y-auto h-[60vh]">
+            </div>
+        <div class="absolute bottom-0 left-0 w-full p-6 bg-zinc-800">
+            <div class="flex justify-between text-xl font-bold mb-4">
+                <span>Total:</span>
+                <span>Rs. <span id="cart-total">0</span></span>
+            </div>
+            <button onclick="sendToWhatsApp()" class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700">
+                <i class="fab fa-whatsapp mr-2"></i> ORDER VIA WHATSAPP
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const menuData = {
+            burgers: [
+                { name: "Shami Burger", price: 150 },
+                { name: "Doubl Anda", price: 200 },
+                { name: "D/Anda D/Shami", price: 250 },
+                { name: "Chicken Burger", price: 280 },
+                { name: "D/Chicken Burger", price: 350 }
+            ],
+            zingers: [
+                { name: "Zinger Burger", price: 370 },
+                { name: "D/Patty Zinger", price: 600 },
+                { name: "Zinger Cheese Burger", price: 430 },
+                { name: "Full Lodad Fries", price: 400 },
+                { name: "Hf Lodad Fries", price: 200 }
+            ],
+            shawarma: [
+                { name: "Chicken Shawarma", price: 230 },
+                { name: "Zinger Shawarma", price: 330 },
+                { name: "Plter Shawarma", price: 430 },
+                { name: "Special Shawarma", price: 350 }
+            ]
+        };
+
+        let cart = [];
+
+        function initMenu() {
+            const render = (list, elementId) => {
+                const container = document.getElementById(elementId);
+                list.forEach(item => {
+                    container.innerHTML += `
+                        <div class="flex justify-between items-center p-3 card-gradient rounded-lg">
+                            <div>
+                                <p class="font-semibold">${item.name}</p>
+                                <p class="text-desi-gold">Rs. ${item.price}</p>
+                            </div>
+                            <button onclick="addToCart('${item.name}', ${item.price})" class="bg-desi-red hover:bg-red-700 p-2 rounded text-sm">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    `;
+                });
+            };
+            render(menuData.burgers, 'burger-list');
+            render(menuData.zingers, 'zinger-list');
+            render(menuData.shawarma, 'shawarma-list');
+        }
+
+        function addToCart(name, price) {
+            const existing = cart.find(i => i.name === name);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            const container = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+            const countEl = document.getElementById('cart-count');
+            
+            container.innerHTML = '';
+            let total = 0;
+            let count = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+                count += item.qty;
+                container.innerHTML += `
+                    <div class="flex justify-between items-center border-b border-zinc-700 pb-2">
+                        <div>
+                            <p class="text-sm font-bold">${item.name}</p>
+                            <p class="text-xs text-zinc-400">${item.qty} x Rs. ${item.price}</p>
+                        </div>
+                        <button onclick="removeItem(${index})" class="text-red-500 text-sm">Remove</button>
+                    </div>
+                `;
+            });
+
+            totalEl.innerText = total;
+            countEl.innerText = count;
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            sidebar.classList.toggle('translate-x-full');
+        }
+
+        function sendToWhatsApp() {
+            if (cart.length === 0) return alert("Cart is empty!");
+            
+            let message = "🍔 *New Order from Tipu Burger Website*%0A---------------------------%0A";
+            let total = 0;
+            cart.forEach(item => {
+                message += `• ${item.name} (x${item.qty}) - Rs. ${item.price * item.qty}%0A`;
+                total += item.price * item.qty;
+            });
+            message += `---------------------------%0A💰 *Total Amount: Rs. ${total}*%0A📍 Please send your location.`;
+            
+            window.open(`https://wa.me/923092245810?text=${message}`, '_blank');
+        }
+
+        initMenu();
+    </script>
+</body>
+</html>
