@@ -1,249 +1,258 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ur">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Tipu Burger | Premium Desi Taste</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipu Burger | ٹپو برگر</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&family=Poppins:wght@300;400;700&family=Bebas+Neue&display=swap');
         
-        body { font-family: 'Poppins', sans-serif; background-color: #0a0a0a; color: white; overflow-x: hidden; }
-        .heading-font { font-family: 'Bebas Neue', cursive; letter-spacing: 1px; }
-        .bg-desi-red { background-color: #bc1818; }
+        body { font-family: 'Poppins', sans-serif; background-color: #050505; color: white; }
+        .urdu { font-family: 'Noto Nastaliq Urdu', serif; line-height: 2.5; }
+        .heading-font { font-family: 'Bebas Neue', cursive; letter-spacing: 2px; }
+        .bg-desi-red { background-color: #8b0000; }
         .text-desi-gold { color: #fcc419; }
-        .card-gradient { background: linear-gradient(145deg, #1a1a1a, #0d0d0d); border: 1px solid #222; }
         
         /* Professional Sticky Note */
-        .delivery-pill {
+        .sticky-area-note {
             position: fixed;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(20, 20, 20, 0.9);
-            border: 1px solid #fcc419;
-            backdrop-filter: blur(10px);
-            padding: 8px 20px;
-            border-radius: 50px;
-            z-index: 40;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            white-space: nowrap;
-            font-size: 0.85rem;
+            left: 20px;
+            z-index: 50;
+            background: #1a1a1a;
+            border-left: 4px solid #fcc419;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            max-width: 280px;
+            display: none; /* Hidden on small mobile to avoid clutter */
         }
+        @media (min-width: 768px) { .sticky-area-note { display: block; } }
 
-        /* Floating WhatsApp Button */
-        .wa-float {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background-color: #25d366;
-            color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-            z-index: 45;
-            transition: transform 0.3s;
+        .menu-card {
+            background: linear-gradient(145deg, #141414, #0a0a0a);
+            border: 1px solid #222;
+            transition: all 0.3s;
         }
-        .wa-float:hover { transform: scale(1.1); }
+        .menu-card:hover { border-color: #8b0000; transform: translateY(-2px); }
     </style>
 </head>
 <body>
 
-    <div class="delivery-pill text-desi-gold animate-bounce">
-        <i class="fas fa-motorcycle mr-2"></i> Delivering in Paragon, Green City & Nearby
+    <div class="sticky-area-note">
+        <p class="text-xs text-desi-gold font-bold uppercase tracking-widest">Delivery Zones</p>
+        <p class="text-sm mt-1">We deliver to <b>Paragon, Green City</b> & nearby areas.</p>
+        <p class="text-[10px] text-zinc-500 mt-2 italic">Standard Delivery: Rs. 100</p>
     </div>
 
-    <a href="https://wa.me/923092245810" class="wa-float">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <header class="bg-black/95 sticky top-0 z-50 border-b border-zinc-800 p-3 md:p-4">
+    <header class="bg-black/95 sticky top-0 z-[100] border-b border-zinc-800 px-4 py-3">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-3xl md:text-4xl heading-font text-desi-gold tracking-tighter">TIPU <span class="text-white">BURGER</span></h1>
-            <button onclick="toggleCart()" class="relative p-2">
-                <i class="fas fa-shopping-bag text-2xl"></i>
-                <span id="cart-count" class="absolute top-0 right-0 bg-desi-red text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center border border-black">0</span>
+            <div>
+                <h1 class="text-3xl heading-font text-desi-gold leading-none">TIPU BURGER</h1>
+                <p class="urdu text-[10px] text-white -mt-1 text-right">ٹپو برگر</p>
+            </div>
+            <button onclick="toggleCart()" class="bg-desi-red p-3 rounded-full relative">
+                <i class="fas fa-shopping-basket"></i>
+                <span id="cart-count" class="absolute -top-1 -right-1 bg-white text-black text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center">0</span>
             </button>
         </div>
     </header>
 
-    <section class="h-[50vh] bg-cover bg-center flex items-center px-4" style="background-image: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1965&auto=format&fit=crop');">
-        <div>
-            <h2 class="text-5xl md:text-7xl heading-font leading-none">FRESH. HOT.<br><span class="text-desi-gold">DESI STYLE.</span></h2>
-            <p class="text-zinc-300 mt-2 max-w-xs">Premium ingredients, local soul. Order now for lightning-fast delivery.</p>
-        </div>
+    <section class="grid grid-cols-2 md:grid-cols-4 h-64 overflow-hidden">
+        <div class="bg-cover bg-center border-1 border-black hover:scale-105 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=500');"></div>
+        <div class="bg-cover bg-center border-1 border-black hover:scale-105 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1561758033-d89a9ad46330?q=80&w=500');"></div>
+        <div class="bg-cover bg-center border-1 border-black hover:scale-105 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1626074353765-517a681e40be?q=80&w=500');"></div>
+        <div class="bg-cover bg-center border-1 border-black hover:scale-105 transition duration-500" style="background-image: url('https://images.unsplash.com/photo-1551782450-a2132b4ba21d?q=80&w=500');"></div>
     </section>
 
-    <section id="menu" class="container mx-auto py-10 px-4 mb-20">
-        <div class="flex items-center justify-center gap-4 mb-10">
-            <div class="h-[1px] bg-zinc-700 w-12"></div>
-            <h3 class="text-3xl heading-font">THE MENU</h3>
-            <div class="h-[1px] bg-zinc-700 w-12"></div>
+    <main class="container mx-auto px-4 py-12 pb-32">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl heading-font mb-2">Our Menu <span class="urdu text-2xl text-desi-gold ml-4">فہرست طعام</span></h2>
+            <p class="text-zinc-500 italic">Freshly Prepared • Hot Delivery • Authentic Desi Style</p>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div>
-                <h4 class="text-xl text-desi-gold heading-font mb-4 flex items-center"><span class="bg-desi-red h-1 w-6 mr-2"></span> BURGERS</h4>
-                <div id="burger-list" class="space-y-3"></div>
-            </div>
 
-            <div>
-                <h4 class="text-xl text-desi-gold heading-font mb-4 flex items-center"><span class="bg-desi-red h-1 w-6 mr-2"></span> ZINGER & SIDES</h4>
-                <div id="zinger-list" class="space-y-3"></div>
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <section>
+                <div class="flex justify-between items-end border-b-2 border-desi-red mb-6 pb-2">
+                    <h3 class="text-2xl font-bold">BURGERS</h3>
+                    <span class="urdu text-xl text-desi-gold">برگر</span>
+                </div>
+                <div id="burger-menu" class="space-y-4"></div>
+            </section>
 
-            <div>
-                <h4 class="text-xl text-desi-gold heading-font mb-4 flex items-center"><span class="bg-desi-red h-1 w-6 mr-2"></span> SHAWARMA</h4>
-                <div id="shawarma-list" class="space-y-3"></div>
-            </div>
+            <section>
+                <div class="flex justify-between items-end border-b-2 border-desi-red mb-6 pb-2">
+                    <h3 class="text-2xl font-bold">ZINGER BURGER</h3>
+                    <span class="urdu text-xl text-desi-gold">زنگر برگر</span>
+                </div>
+                <div id="zinger-menu" class="space-y-4"></div>
+            </section>
+
+            <section>
+                <div class="flex justify-between items-end border-b-2 border-desi-red mb-6 pb-2">
+                    <h3 class="text-2xl font-bold">SHAWARMA</h3>
+                    <span class="urdu text-xl text-desi-gold">شوارما</span>
+                </div>
+                <div id="shawarma-menu" class="space-y-4"></div>
+            </section>
+
+            <section>
+                <div class="flex justify-between items-end border-b-2 border-desi-red mb-6 pb-2">
+                    <h3 class="text-2xl font-bold">FRIES</h3>
+                    <span class="urdu text-xl text-desi-gold">چپس</span>
+                </div>
+                <div id="fries-menu" class="space-y-4"></div>
+            </section>
         </div>
-    </section>
+    </main>
 
-    <div id="cart-sidebar" class="fixed right-0 top-0 h-full w-full md:w-[400px] bg-[#111] shadow-2xl transform translate-x-full transition-transform duration-300 z-[60] flex flex-col">
-        <div class="p-6 flex justify-between items-center border-b border-zinc-800">
-            <h3 class="text-2xl heading-font tracking-widest">YOUR TRAY</h3>
-            <button onclick="toggleCart()" class="text-3xl">&times;</button>
-        </div>
-        
-        <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+    <div id="cart-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[200] hidden flex justify-end">
+        <div class="w-full max-w-md bg-zinc-900 h-full p-6 flex flex-col shadow-2xl">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="text-2xl font-bold">Your Order <span class="urdu text-sm">آپ کا آرڈر</span></h3>
+                <button onclick="toggleCart()" class="text-3xl text-zinc-500">&times;</button>
             </div>
+            
+            <div id="cart-list" class="flex-1 overflow-y-auto space-y-4 pr-2"></div>
 
-        <div class="p-6 bg-zinc-900 border-t border-zinc-800">
-            <div class="space-y-2 mb-4 text-sm">
-                <div class="flex justify-between"><span>Subtotal</span><span id="subtotal">Rs. 0</span></div>
-                <div class="flex justify-between text-zinc-400"><span>Delivery Charges</span><span>Rs. 100</span></div>
-                <div class="flex justify-between text-xl font-bold text-desi-gold pt-2 border-t border-zinc-700">
-                    <span>Grand Total</span>
+            <div class="mt-6 pt-6 border-t border-zinc-700 space-y-3">
+                <input type="text" id="cust-name" placeholder="آپ کا نام / Your Name" class="w-full bg-black border border-zinc-700 p-4 rounded-lg focus:outline-none focus:border-desi-gold">
+                
+                <div class="flex justify-between text-sm text-zinc-400 px-1">
+                    <span>Delivery Charges (Paragon/Green City)</span>
+                    <span>Rs. 100</span>
+                </div>
+                
+                <div class="flex justify-between text-2xl font-bold text-desi-gold px-1">
+                    <span>Total</span>
                     <span>Rs. <span id="cart-total">0</span></span>
                 </div>
+
+                <button onclick="checkout()" class="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-3 transition-all active:scale-95">
+                    <i class="fab fa-whatsapp text-2xl"></i> CONFIRM VIA WHATSAPP
+                </button>
             </div>
-            
-            <input type="text" id="cust-name" placeholder="Enter Your Name" class="w-full bg-black border border-zinc-700 p-3 rounded mb-4 focus:border-desi-gold outline-none text-white">
-            
-            <button onclick="sendToWhatsApp()" class="w-full bg-[#25d366] text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition">
-                <i class="fab fa-whatsapp text-xl"></i> ORDER ON WHATSAPP
-            </button>
         </div>
     </div>
 
     <script>
-        const menuData = {
+        const menuItems = {
             burgers: [
-                { name: "Shami Burger", price: 150 },
-                { name: "Doubl Anda", price: 200 },
-                { name: "D/Anda D/Shami", price: 250 },
-                { name: "Chicken Burger", price: 280 },
-                { name: "D/Chicken Burger", price: 350 }
+                { n: "Shami Burger", u: "شامی برگر", p: 150 },
+                { n: "Doubl Anda", u: "ڈبل انڈہ", p: 200 },
+                { n: "D/Anda D/Shami", u: "ڈبل انڈہ ڈبل شامی", p: 250 },
+                { n: "Chicken Burger", u: "چکن برگر", p: 280 },
+                { n: "D/Chicken Burger", u: "ڈبل چکن برگر", p: 350 }
             ],
             zingers: [
-                { name: "Zinger Burger", price: 370 },
-                { name: "D/Patty Zinger", price: 600 },
-                { name: "Zinger Cheese Burger", price: 430 },
-                { name: "Full Lodad Fries", price: 400 },
-                { name: "Hf Lodad Fries", price: 200 }
+                { n: "Zinger Burger", u: "زنگر برگر", p: 370 },
+                { n: "D/Patty Zinger", u: "ڈبل پیٹی زنگر", p: 600 },
+                { n: "Zinger Cheese Burger", u: "زنگر چیز برگر", p: 430 },
+                { n: "Per Cheese Slice", u: "چیز سلائس", p: 60 },
+                { n: "Zinger Plater", u: "زنگر پلیٹر", p: 550 }
             ],
             shawarma: [
-                { name: "Chicken Shawarma", price: 230 },
-                { name: "Zinger Shawarma", price: 330 },
-                { name: "Plter Shawarma", price: 430 },
-                { name: "Special Shawarma", price: 350 },
-                { name: "Open Shawarma", price: 320 },
-                { name: "Anda Shawarma", price: 300 }
+                { n: "Chicken Shawarma", u: "چکن شوارما", p: 230 },
+                { n: "Zinger Shawarma", u: "زنگر شوارما", p: 330 },
+                { n: "Plter Shawarma", u: "پلیٹر شوارما", p: 430 },
+                { n: "Spicial Shawarma", u: "سپیشل شوارما", p: 350 },
+                { n: "Open Shawarma", u: "اوپن شوارما", p: 320 },
+                { n: "Anda Shawarma", u: "انڈہ شوارما", p: 300 }
+            ],
+            fries: [
+                { n: "Full Fries", u: "فل چپس", p: 200 },
+                { n: "Hf Fries", u: "ہاف چپس", p: 100 },
+                { n: "Full Lodad Fries", u: "فل لوڈڈ چپس", p: 400 },
+                { n: "Hf Lodad Fries", u: "ہاف لوڈڈ چپس", p: 200 }
             ]
         };
 
         let cart = [];
-        const deliveryFee = 100;
+        const dfee = 100;
 
-        function initMenu() {
-            const populate = (list, id) => {
-                const el = document.getElementById(id);
-                list.forEach(item => {
-                    el.innerHTML += `
-                        <div class="flex justify-between items-center p-3 card-gradient rounded-xl hover:border-desi-red transition-colors">
-                            <div>
-                                <h5 class="font-medium text-sm md:text-base">${item.name}</h5>
-                                <p class="text-desi-gold font-bold">Rs. ${item.price}</p>
+        function loadMenu() {
+            Object.keys(menuItems).forEach(cat => {
+                const container = document.getElementById(`${cat}-menu`);
+                menuItems[cat].forEach(item => {
+                    container.innerHTML += `
+                        <div class="menu-card flex justify-between items-center p-4 rounded-xl">
+                            <div class="flex-1">
+                                <h4 class="font-bold text-lg">${item.n}</h4>
+                                <p class="urdu text-desi-gold text-sm tracking-normal">${item.u}</p>
                             </div>
-                            <button onclick="addToCart('${item.name}', ${item.price})" class="bg-desi-red w-10 h-10 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-plus"></i>
-                            </button>
+                            <div class="text-right flex items-center gap-4">
+                                <span class="font-bold">Rs. ${item.p}</span>
+                                <button onclick="addToCart('${item.n}', ${item.p})" class="bg-desi-red hover:bg-red-700 w-10 h-10 rounded-lg flex items-center justify-center transition">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
                         </div>`;
                 });
-            }
-            populate(menuData.burgers, 'burger-list');
-            populate(menuData.zingers, 'zinger-list');
-            populate(menuData.shawarma, 'shawarma-list');
+            });
         }
 
         function addToCart(name, price) {
-            const item = cart.find(i => i.name === name);
-            if (item) item.qty++;
+            const exists = cart.find(i => i.name === name);
+            if(exists) exists.qty++;
             else cart.push({name, price, qty: 1});
-            updateUI();
+            renderCart();
         }
 
-        function updateUI() {
-            const container = document.getElementById('cart-items');
-            let subtotal = 0;
+        function renderCart() {
+            const list = document.getElementById('cart-list');
+            let total = 0;
             let count = 0;
-            container.innerHTML = '';
+            list.innerHTML = '';
             
-            cart.forEach((item, index) => {
-                subtotal += (item.price * item.qty);
+            cart.forEach((item, idx) => {
+                total += (item.price * item.qty);
                 count += item.qty;
-                container.innerHTML += `
-                    <div class="flex justify-between items-center bg-black/40 p-3 rounded-lg border border-zinc-800">
+                list.innerHTML += `
+                    <div class="bg-black/40 p-3 rounded-lg flex justify-between items-center border border-zinc-800">
                         <div>
-                            <p class="font-bold text-sm">${item.name}</p>
-                            <p class="text-xs text-zinc-500">${item.qty} x Rs. ${item.price}</p>
+                            <p class="font-bold">${item.name}</p>
+                            <p class="text-xs text-zinc-500">${item.qty} x ${item.price}</p>
                         </div>
                         <div class="flex items-center gap-3">
-                            <span class="text-desi-gold font-bold">Rs. ${item.price * item.qty}</span>
-                            <button onclick="removeItem(${index})" class="text-red-500"><i class="fas fa-trash-alt"></i></button>
+                            <span class="font-bold text-desi-gold">Rs. ${item.price * item.qty}</span>
+                            <button onclick="remove(${idx})" class="text-red-500 p-2"><i class="fas fa-times"></i></button>
                         </div>
                     </div>`;
             });
-
+            
+            document.getElementById('cart-total').innerText = total > 0 ? total + dfee : 0;
             document.getElementById('cart-count').innerText = count;
-            document.getElementById('subtotal').innerText = `Rs. ${subtotal}`;
-            document.getElementById('cart-total').innerText = subtotal > 0 ? subtotal + deliveryFee : 0;
         }
 
-        function removeItem(i) { cart.splice(i, 1); updateUI(); }
-        function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('translate-x-full'); }
+        function remove(idx) { cart.splice(idx, 1); renderCart(); }
+        function toggleCart() { document.getElementById('cart-overlay').classList.toggle('hidden'); }
 
-        function sendToWhatsApp() {
+        function checkout() {
             const name = document.getElementById('cust-name').value;
-            if(!name) return alert("Please enter your name first!");
-            if(cart.length === 0) return alert("Your tray is empty!");
+            if(!name) return alert("Please enter your name!");
+            if(cart.length === 0) return alert("Your cart is empty!");
 
-            let msg = `*NEW ORDER - TIPU BURGER*%0A`;
-            msg += `*Customer:* ${name}%0A`;
+            let msg = `🍔 *TIPU BURGER ORDER*%0A`;
+            msg += `*Name:* ${name}%0A`;
             msg += `--------------------------%0A`;
             
-            let subtotal = 0;
-            cart.forEach(item => {
-                msg += `• ${item.name} x${item.qty} = Rs. ${item.price * item.qty}%0A`;
-                subtotal += (item.price * item.qty);
+            let sub = 0;
+            cart.forEach(i => {
+                msg += `• ${i.name} (${i.qty}) = Rs ${i.price * i.qty}%0A`;
+                sub += (i.price * i.qty);
             });
-
+            
             msg += `--------------------------%0A`;
-            msg += `*Subtotal:* Rs. ${subtotal}%0A`;
-            msg += `*Delivery:* Rs. ${deliveryFee}%0A`;
-            msg += `*Grand Total: Rs. ${subtotal + deliveryFee}*%0A%0A`;
-            msg += `📍 _Delivering to Paragon/Green City area._`;
+            msg += `*Delivery (Paragon/Green City):* Rs 100%0A`;
+            msg += `*Grand Total: Rs ${sub + dfee}*%0A%0A`;
+            msg += `📍 _Please share your exact location now._`;
 
             window.open(`https://wa.me/923092245810?text=${msg}`, '_blank');
         }
 
-        initMenu();
+        loadMenu();
     </script>
 </body>
 </html>
